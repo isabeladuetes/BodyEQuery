@@ -139,6 +139,7 @@ app.get('/animais', (req, res) => {
   });
 });
 
+// Rotas POST com Body
 //Adicionar uma na minha lista
 app.post("/varinhas", (req, res) => {
   const { material, nucleo, comprimento } = req.body;
@@ -148,15 +149,15 @@ if (!material || !nucleo || !comprimento) {
 return res.status(400).json({
   success: false,
   message: "Material, nucleo e comprimento são obrigatórios!",
-});
+  });
 }
 
 //Criar varinha
 const novaVarinha= {
   id : varinhas.length + 1,
-  material,
-  nucleo,
-  comprimento
+  material: material,
+  nucleo: nucleo,
+  comprimento: comprimento
 }
 
 //Adicionar a lista
@@ -167,7 +168,7 @@ success: true,
 message: "Nova varinha adicionada!",
 data: novaVarinha,
   });
-})
+});
 
 //Iniciar servidor escutando na porta definida
 app.listen(serverPort, () => {
